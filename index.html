@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="simple-grid.css">
+    <title>Country Flags</title>
+
+    <script type="text/x-template" class="templateName">
+        {{#each countries}}
+        <li class="displayName">
+            {{this}}
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-template" class="templateFlag">
+        {{#each flags}}
+        <li class="displayFlag">
+            {{this}}
+        </li>
+        {{/each}}
+    </script>
+    
 </head>
 <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Country Flags</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Country Name</h4>
+                <!-- <div>Rainbow</div> -->
+                <div class="nameInput"> </div>
+            </div>
+            <div class="col-6">
+                <h4>Country Flag</h4>
+                <!-- <div>🏳️‍🌈</div> -->
+                <div class="flagInput"> </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="index.js"></script>
     
 </body>
 </html>

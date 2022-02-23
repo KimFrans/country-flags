@@ -1,0 +1,22 @@
+body{
+    box-sizing: border-box;
+    background-color: cornflowerblue;
+}
+
+h1{
+    /* text-align: center; */
+    color: whitesmoke;
+    letter-spacing: 3px;
+    font-style: oblique;
+    margin-left: 18%;
+}
+
+.row{
+    margin-left: 12%;
+}
+
+li{
+    list-style: none;
+    font-size: 18px;
+    
+}
