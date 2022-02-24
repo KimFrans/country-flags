@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://kit.fontawesome.com/455b1f2011.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +25,34 @@
         </li>
         {{/each}}
     </script>
-    
+
 </head>
+
 <body>
 
     <div class="container">
+        <div class="topnav">
+            <button class="sort">Sort</button>
+            <div class="search-container">
+                <input type="text" placeholder="Search.." name="search" class="search">
+                <button class="search-button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-11">
+            <button id="myBtn" class="add">Add</button>
+            <div id="myModal" class="modal">
+
+
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Please enter the country details below : </p>
+                    <div class="messages"> </div>
+                    <div class="row-name">Country Name : <input type="text" name="addCountryName" class="insertNewCountryName"></div>
+                    <div class="row-flag">Country Flag : <input type="image" src="" alt=""></div>
+                    <button class="adding">Submit</button>
+                </div>
+            </div>
+       
         <div class="row">
             <div class="col-12">
                 <h1>Country Flags</h1>
@@ -36,19 +61,20 @@
         <div class="row">
             <div class="col-6">
                 <h4>Country Name</h4>
-                <!-- <div>Rainbow</div> -->
+                    <!-- <div>Rainbow</div> -->
                 <div class="nameInput"> </div>
             </div>
             <div class="col-6">
                 <h4>Country Flag</h4>
-                <!-- <div>🏳️‍🌈</div> -->
+                    <!-- <div>🏳️‍🌈</div> -->
                 <div class="flagInput"> </div>
             </div>
         </div>
-        
+
     </div>
 
     <script src="index.js"></script>
-    
+
 </body>
+
 </html>
