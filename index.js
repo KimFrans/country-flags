@@ -5,7 +5,7 @@
 const countryData = [{ country: "Argentina", flag: "🇦🇷" },
 { country: "Brazil", flag: "🇧🇷" }, { country: "Chile", flag: "🇨🇱" }, { country: "Zambia", flag: "🇿🇲" },
 { country: "Uganda", flag: "🇺🇬" }, { country: "Malawi", flag: "🇲🇼" }, { country: "Rwanda", flag: "🇷🇼" },
-{ country: "Ireland", flag: "🇮🇪" }, { country: "Switzerland", flag: "🇨🇭" }]
+{ country: "Ireland", flag: "🇮🇪" }, { country: "Switzerland", flag: "🇨🇭" }];
 
 const countryName = document.querySelector(".nameInput")
 const countryFlag = document.querySelector(".flagInput")
@@ -13,9 +13,11 @@ const sortBtn = document.querySelector(".sort")
 const searchBtn = document.querySelector(".search-button")
 const searchValue = document.querySelector(".search")
 const gettingNewCountryName = document.querySelector(".insertNewCountryName")
+const gettingNewFlag = document.querySelector(".insertNewFlag")
 const addingNewCountryNameToArray = document.querySelector(".adding")
 const errorMessage = document.querySelector(".messages")
 const sortDisplay = document.querySelector(".order")
+// const results = document.querySelector(".results")
 
 // get a reference to the template script tag
 var templateSource = document.querySelector(".templateName").innerHTML;
@@ -71,38 +73,48 @@ sortBtn.addEventListener('click', sortAlphabetically)
 
 function addingNewCountry() {
   const newCountry = gettingNewCountryName.value
+  const newFlag = gettingNewFlag.value
 
-  // if(countriesList[newCountry] === undefined){
+  console.log(newCountry);
+  console.log(newFlag);
 
-  //   if(newCountry.match("^[a-zA-Z]*$")){
-  // countriesList.push(newCountry)
-  //   }
-  //   else if(!newCountry.match("^[a-zA-Z]*$")){
-  //     // errorMessage.innerHTML =  "Please enter a valid country name"
-  //     setTimeout(function(){
-  //       errorMessage.innerHTML = "Please enter a valid country name";
-  //   }, 3000);
-  //   }
+  // if(countryData[newCountry] === undefined){
+
+    // if(newCountry.match("^[a-zA-Z]*$")){
+      countryData.push({ country: newCountry, flag: newFlag})
+    // }
+    console.log(countryData);
+    // else if(!newCountry.match("^[a-zA-Z]*$")){
+    //   // errorMessage.innerHTML =  "Please enter a valid country name"
+    //   setTimeout(function(){
+    //     errorMessage.innerHTML = "Please enter a valid country name";
+    // }, 3000);
+    // }
 
   // }
 
-  // console.log(countriesList);
-  countryName.innerHTML = userTemplate({ countries: countriesList })
-  // console.log(countryName.innerHTML);
+
+  display()
 
 }
 addingNewCountryNameToArray.addEventListener('click', addingNewCountry)
 
-// function searchCountry() {
-//     let searchInput = searchValue.value
-//     console.log(searchInput);
+function searchCountry() {
+  let searchInput = searchValue.value
 
-//     let searchArray = countriesList.find(searchInput)
-//     countryName.innerHTML = userTemplate({ countries: searchArray })
+  countryData.forEach(object =>{
+    if(searchInput === object.country){
+        console.log(object.country + " " + object.flag);
+        let result = object.country + " " + object.flag
+        countryName.innerHTML = userTemplate({ countries: result})
+    }
+});
+    // countryName.innerHTML = userTemplate({ countries: result })
 
-// }
 
-// searchBtn.addEventListener('click', searchCountry)
+}
+
+searchBtn.addEventListener('click', searchCountry)
 
 // Get the modal
 var modal = document.getElementById("myModal");

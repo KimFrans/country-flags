@@ -32,9 +32,9 @@
 
     <div class="container">
         <div class="topnav">
-            <button class="sort">Sort</button>
+            <button class="sort">Sort Alphabetically</button>
             <div class="search-container">
-                <input type="text" placeholder="Search.." name="search" class="search">
+                <input type="text" placeholder="Search.." name="search" class="search" onclick=searchCountry()>
                 <button class="search-button"><i class="fa fa-search"></i></button>
             </div>
         </div>
@@ -48,7 +48,7 @@
                     <p>Please enter the country details below : </p>
                     <div class="messages"> </div>
                     <div class="row-name">Country Name : <input type="text" name="addCountryName" class="insertNewCountryName"></div>
-                    <div class="row-flag">Country Flag : <input type="image" src="" alt=""></div>
+                    <div class="row-flag">Country Flag : <input type="text" src="" alt="" class="insertNewFlag"></div>
                     <button class="adding">Submit</button>
                 </div>
             </div>
@@ -58,18 +58,21 @@
                 <h1>Country Flags</h1>
             </div>
         </div>
+        <!-- <div class="results">
+
+        </div> -->
         <div class="row">
-            <div class="col-3">
+            <div class="col-4">
                 <h4>Country Name</h4>
                     <!-- <div>Rainbow</div> -->
                 <div class="nameInput"> </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <h4>Country Flag</h4>
                     <!-- <div>🏳️‍🌈</div> -->
                 <div class="flagInput"> </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <h4>Alphabetical Order</h4>
                 <div class="order"></div>
             </div>
