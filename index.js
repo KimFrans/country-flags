@@ -76,20 +76,26 @@ function addingNewCountry() {
   const newCountry = gettingNewCountryName.value
   const newFlag = gettingNewFlag.value
 
-  console.log(newCountry);
-  console.log(newFlag);
+  const newCountryNameUpper = newCountry.charAt(0).toUpperCase() + newCountry.slice(1);
+  console.log(newCountryNameUpper);
 
-  // if(countryData[newCountry] === undefined){
+  // console.log(newCountry);
+  // console.log(newFlag);
 
-  // if(newCountry.match("^[a-zA-Z]*$")){
-  countryData.push({ country: newCountry, flag: newFlag })
-  // }
-  console.log(countryData);
-  // else if(!newCountry.match("^[a-zA-Z]*$")){
-  //   // errorMessage.innerHTML =  "Please enter a valid country name"
-  //   setTimeout(function(){
-  //     errorMessage.innerHTML = "Please enter a valid country name";
-  // }, 3000);
+  // if (countryData[newCountryNameUpper] === undefined) {
+
+    // if(newCountry.match("^[a-zA-Z]*$")){
+    countryData.push({ country: newCountryNameUpper, flag: newFlag })
+    // }
+    console.log(countryData);
+    // else if(!newCountry.match("^[a-zA-Z]*$")){
+    //   // errorMessage.innerHTML =  "Please enter a valid country name"
+    //   setTimeout(function(){
+    //     errorMessage.innerHTML = "Please enter a valid country name";
+    // }, 3000);
+  // }else{
+  //   errorMessage.innerHTML = "This Country has already been entered"
+  //   console.log("This Country has already been entered");
   // }
 
   // }
@@ -102,11 +108,13 @@ addingNewCountryNameToArray.addEventListener('click', addingNewCountry)
 
 function searchCountry() {
   let searchInput = searchValue.value
+  const searchInputUpper = searchInput.charAt(0).toUpperCase() + searchInput.slice(1);
+  // console.log(searchInputUpper);
 
   countryData.forEach(object => {
-    if (searchInput === object.country) {
+    if (searchInputUpper === object.country) {
       searchDispay.innerHTML = userTemplate({ countries: [object.country + " " + object.flag] });
-      console.log(object.country + " " + object.flag);  
+      console.log(object.country + " " + object.flag);
     }
   });
 

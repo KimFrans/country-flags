@@ -34,7 +34,7 @@
         <div class="topnav">
             <button class="sort">Sort Alphabetically</button>
             <div class="search-container">
-                <input type="text" placeholder="Search.." name="search" class="search">
+                <input type="text" placeholder="Search.." name="search" class="search" onfocus="this.value=''">
                 <button class="search-button"><i class="fa fa-search"></i></button>
             </div>
         </div>
@@ -47,8 +47,8 @@
                     <span class="close">&times;</span>
                     <p>Please enter the country details below : </p>
                     <div class="messages"> </div>
-                    <div class="row-name">Country Name : <input type="text" name="addCountryName" class="insertNewCountryName"></div>
-                    <div class="row-flag">Country Flag : <input type="text" src="" alt="" class="insertNewFlag"></div>
+                    <div class="row-name">Country Name : <input type="text" name="addCountryName" class="insertNewCountryName" onfocus="this.value=''"></div>
+                    <div class="row-flag">Country Flag : <input type="text" src="" alt="" class="insertNewFlag" onfocus="this.value=''"></div>
                     <button class="adding">Submit</button>
                 </div>
             </div>
