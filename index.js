@@ -41,19 +41,19 @@ const stringData = JSON.stringify(countryData)
 
 function display() {
   let filter = countryData.map(function (element) {
-    return element.country
+    return element.country + " " + element.flag
 
   });
   countryName.innerHTML = userTemplate({ countries: filter })
 
-  let filterFlag = countryData.map(function (element) {
-    return element.flag
+  // let filterFlag = countryData.map(function (element) {
+  //   return element.flag
 
-  });
-  countryFlag.innerHTML = userTemplateFlag({ flags: filterFlag })
+  // });
+  // countryFlag.innerHTML = userTemplateFlag({ flags: filterFlag })
 
   console.log(filter)
-  console.log(filterFlag)
+  // console.log(filterFlag)
   // return filter && filterFlag
 }
 display()
@@ -84,15 +84,15 @@ function addingNewCountry() {
 
   // if (countryData[newCountryNameUpper] === undefined) {
 
-    // if(newCountry.match("^[a-zA-Z]*$")){
-    countryData.push({ country: newCountryNameUpper, flag: newFlag })
-    // }
-    console.log(countryData);
-    // else if(!newCountry.match("^[a-zA-Z]*$")){
-    //   // errorMessage.innerHTML =  "Please enter a valid country name"
-    //   setTimeout(function(){
-    //     errorMessage.innerHTML = "Please enter a valid country name";
-    // }, 3000);
+  // if(newCountry.match("^[a-zA-Z]*$")){
+  countryData.push({ country: newCountryNameUpper, flag: newFlag })
+  // }
+  console.log(countryData);
+  // else if(!newCountry.match("^[a-zA-Z]*$")){
+  //   // errorMessage.innerHTML =  "Please enter a valid country name"
+  //   setTimeout(function(){
+  //     errorMessage.innerHTML = "Please enter a valid country name";
+  // }, 3000);
   // }else{
   //   errorMessage.innerHTML = "This Country has already been entered"
   //   console.log("This Country has already been entered");
