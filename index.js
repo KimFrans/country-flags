@@ -17,6 +17,7 @@ const gettingNewFlag = document.querySelector(".insertNewFlag")
 const addingNewCountryNameToArray = document.querySelector(".adding")
 const errorMessage = document.querySelector(".messages")
 const sortDisplay = document.querySelector(".order")
+const searchDispay = document.querySelector(".search-results")
 // const results = document.querySelector(".results")
 
 // get a reference to the template script tag
@@ -80,16 +81,16 @@ function addingNewCountry() {
 
   // if(countryData[newCountry] === undefined){
 
-    // if(newCountry.match("^[a-zA-Z]*$")){
-      countryData.push({ country: newCountry, flag: newFlag})
-    // }
-    console.log(countryData);
-    // else if(!newCountry.match("^[a-zA-Z]*$")){
-    //   // errorMessage.innerHTML =  "Please enter a valid country name"
-    //   setTimeout(function(){
-    //     errorMessage.innerHTML = "Please enter a valid country name";
-    // }, 3000);
-    // }
+  // if(newCountry.match("^[a-zA-Z]*$")){
+  countryData.push({ country: newCountry, flag: newFlag })
+  // }
+  console.log(countryData);
+  // else if(!newCountry.match("^[a-zA-Z]*$")){
+  //   // errorMessage.innerHTML =  "Please enter a valid country name"
+  //   setTimeout(function(){
+  //     errorMessage.innerHTML = "Please enter a valid country name";
+  // }, 3000);
+  // }
 
   // }
 
@@ -102,18 +103,14 @@ addingNewCountryNameToArray.addEventListener('click', addingNewCountry)
 function searchCountry() {
   let searchInput = searchValue.value
 
-  countryData.forEach(object =>{
-    if(searchInput === object.country){
-        console.log(object.country + " " + object.flag);
-        let result = object.country + " " + object.flag
-        countryName.innerHTML = userTemplate({ countries: result})
+  countryData.forEach(object => {
+    if (searchInput === object.country) {
+      searchDispay.innerHTML = userTemplate({ countries: [object.country + " " + object.flag] });
+      console.log(object.country + " " + object.flag);  
     }
-});
-    // countryName.innerHTML = userTemplate({ countries: result })
-
+  });
 
 }
-
 searchBtn.addEventListener('click', searchCountry)
 
 // Get the modal
