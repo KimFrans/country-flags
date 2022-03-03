@@ -1,19 +1,17 @@
 body{
     box-sizing: border-box;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+    background-color: plum;
 }
 
 h1{
     text-align: center;
     color: whitesmoke;
+    /* color: rgb(27, 27, 77); */
     letter-spacing: 3px;
     font-style: oblique;
-    margin-right: 10%;
 }
 
-.row{
-    margin-left: 12%;
-}
 
 li{
     list-style: none;
@@ -23,30 +21,7 @@ li{
 .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
-}
-  
-.topnav a {
-    float: left;
-    display: block;
-    color: black;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-  
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-  
-.topnav a.active {
-    background-color: #2196F3;
-    color: white;
-}
-  
-.topnav .search-container {
-    float: right;
 }
   
 .topnav input[type=text] {
@@ -54,9 +29,10 @@ li{
     margin-top: 8px;
     font-size: 17px;
     border: none;
+    text-align: center;
 }
   
-.topnav .search-container button {
+/* .topnav .search-container button {
     float: right;
     padding: 6px 10px;
     margin-top: 8px;
@@ -65,12 +41,12 @@ li{
     font-size: 17px;
     border: none;
     cursor: pointer;
-}
+} */
   
-.topnav .search-container button:hover {
+/* .topnav .search-container button:hover {
     background: #ccc;
 }
-  
+   */
 @media screen and (max-width: 600px) {
     .topnav .search-container {
       float: none;
@@ -134,6 +110,7 @@ li{
     color: black; 
     border: 2px solid #af4c9e;
     float: left;
+    /* margin-left: 8%; */
 }
   
 .add:hover {
@@ -188,15 +165,19 @@ li{
     padding-bottom: 1%;
 }
 
+.addingBtn{
+    text-align: center;
+}
+
 .adding{
     background-color: #af4c9e; /* Green */
     border: none;
     color: white;
     padding: 5px 10px;
-    text-align: center;
+    /* text-align: center; */
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
+    font-size: 12px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -217,4 +198,13 @@ li{
 
 .messages{
     color: red;
+}
+
+.col-12{
+    text-align: center;
+    /* margin-right: 18%; */
+}
+
+.insertNewCountryName{
+    border-color: black;
 }

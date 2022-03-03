@@ -1,7 +1,3 @@
-// const countriesList = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
-
-// const flagsList = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-
 const countryData = [{ country: "Argentina", flag: "🇦🇷" },
 { country: "Brazil", flag: "🇧🇷" }, { country: "Chile", flag: "🇨🇱" }, { country: "Zambia", flag: "🇿🇲" },
 { country: "Uganda", flag: "🇺🇬" }, { country: "Malawi", flag: "🇲🇼" }, { country: "Rwanda", flag: "🇷🇼" },
@@ -18,7 +14,9 @@ const addingNewCountryNameToArray = document.querySelector(".adding")
 const errorMessage = document.querySelector(".messages")
 const sortDisplay = document.querySelector(".order")
 const searchDispay = document.querySelector(".search-results")
-// const results = document.querySelector(".results")
+
+// localStorage.setItem(countryData , JSON.stringify(countryData))
+// localStorage.getItem(countryData, JSON.parse(countryData))
 
 // get a reference to the template script tag
 var templateSource = document.querySelector(".templateName").innerHTML;
@@ -26,18 +24,7 @@ var templateSource = document.querySelector(".templateName").innerHTML;
 // compile the template
 var userTemplate = Handlebars.compile(templateSource);
 
-// get a reference to the template script tag
-var templateSourceFlag = document.querySelector(".templateFlag").innerHTML;
-
-// compile the template
-var userTemplateFlag = Handlebars.compile(templateSourceFlag);
-
-// countryName.innerHTML = userTemplate({ countries: countriesList })
-const stringData = JSON.stringify(countryData)
-// countryName.innerHTML = stringData
-// countryName.innerHTML = userTemplate({ countries: stringData })
-// console.log(JSON.stringify(countryData));
-// countryFlag.innerHTML = userTemplateFlag({ flags: flagsList })
+// const stringData = JSON.stringify(countryData)
 
 function display() {
   let filter = countryData.map(function (element) {
@@ -45,16 +32,6 @@ function display() {
 
   });
   countryName.innerHTML = userTemplate({ countries: filter })
-
-  // let filterFlag = countryData.map(function (element) {
-  //   return element.flag
-
-  // });
-  // countryFlag.innerHTML = userTemplateFlag({ flags: filterFlag })
-
-  console.log(filter)
-  // console.log(filterFlag)
-  // return filter && filterFlag
 }
 display()
 
@@ -65,61 +42,78 @@ function sortAlphabetically() {
 
   });
   let sortCountry = mappedCountry.sort()
-  sortDisplay.innerHTML = userTemplate({ countries: sortCountry })
-  console.log(sortCountry);
-
-
+  countryName.innerHTML = userTemplate({ countries: sortCountry })
 }
 sortBtn.addEventListener('click', sortAlphabetically)
 
 function addingNewCountry() {
   const newCountry = gettingNewCountryName.value
   const newFlag = gettingNewFlag.value
-
   const newCountryNameUpper = newCountry.charAt(0).toUpperCase() + newCountry.slice(1);
-  console.log(newCountryNameUpper);
+  const flagRegex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
 
-  // console.log(newCountry);
-  // console.log(newFlag);
+  function countryExists(newCountryNameUpper) {
+    return countryData.some(function (element) {
+      return element.country === newCountryNameUpper;
+    });
+  }
 
-  // if (countryData[newCountryNameUpper] === undefined) {
+  function flagExists(newFlag) {
+    return countryData.some(function (element) {
+      return element.flag === newFlag;
+    });
+  }
 
-  // if(newCountry.match("^[a-zA-Z]*$")){
-  countryData.push({ country: newCountryNameUpper, flag: newFlag })
-  // }
-  console.log(countryData);
-  // else if(!newCountry.match("^[a-zA-Z]*$")){
-  //   // errorMessage.innerHTML =  "Please enter a valid country name"
-  //   setTimeout(function(){
-  //     errorMessage.innerHTML = "Please enter a valid country name";
-  // }, 3000);
-  // }else{
-  //   errorMessage.innerHTML = "This Country has already been entered"
-  //   console.log("This Country has already been entered");
-  // }
+  if (newCountryNameUpper && newFlag != "") {
+    if (countryExists(newCountryNameUpper) == false && flagExists(newFlag) == false) {
+      if (newCountry.match("^[a-zA-Z]*$")) {
+        if (newFlag.match(flagRegex)) {
+          countryData.push({ country: newCountryNameUpper, flag: newFlag })
+          // localStorage.setItem(countryData , JSON.stringify(countryData))
+          // console.log(countryData);
 
-  // }
-
+        }
+        else {
+          errorMessage.innerHTML = "Please enter a valid flag"
+        }
+      }
+      else {
+        errorMessage.innerHTML = "Please enter a valid country name"
+      }
+    }
+    else if (countryExists(newCountryNameUpper) == true || flagExists(newFlag) == true) {
+      errorMessage.innerHTML = "This country or flag already exists"
+    }
+  } 
+  else if (newCountryNameUpper == "") {
+    errorMessage.innerHTML = "Please enter a country name"
+  }
+  else if (newFlag == "") {
+    errorMessage.innerHTML = "Please insert a country flag"
+  }
 
   display()
+  // localStorage.setItem(countryData , JSON.stringify(countryData))
+
+  return {
+    countryExists,
+    flagExists
+  }
 
 }
 addingNewCountryNameToArray.addEventListener('click', addingNewCountry)
 
 function searchCountry() {
   let searchInput = searchValue.value
-  const searchInputUpper = searchInput.charAt(0).toUpperCase() + searchInput.slice(1);
-  // console.log(searchInputUpper);
 
-  countryData.forEach(object => {
-    if (searchInputUpper === object.country) {
-      searchDispay.innerHTML = userTemplate({ countries: [object.country + " " + object.flag] });
-      console.log(object.country + " " + object.flag);
-    }
-  });
+  const searchFilter = countryData.filter(function (country) {
+    return country.country.includes(searchInput)
+  })
+  // console.log(searchFilter);
+  countryName.innerHTML = userTemplate({ countries: searchFilter })
 
 }
-searchBtn.addEventListener('click', searchCountry)
+searchValue.addEventListener('keyup', searchCountry)
 
 // Get the modal
 var modal = document.getElementById("myModal");

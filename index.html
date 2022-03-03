@@ -14,17 +14,16 @@
     <script type="text/x-template" class="templateName">
         {{#each countries}}
         <li class="displayName">
-            {{this}}
+            {{#if this.country}}
+            {{this.country}} {{this.flag}} 
+
+            {{else}}
+                {{this}}
+            {{/if}}
         </li>
         {{/each}}
     </script>
-    <script type="text/x-template" class="templateFlag">
-        {{#each flags}}
-        <li class="displayFlag">
-            {{this}}
-        </li>
-        {{/each}}
-    </script>
+    
 
 </head>
 
@@ -32,57 +31,48 @@
 
     <div class="container">
         <div class="topnav">
-            <button class="sort">Sort Alphabetically</button>
-            <div class="search-container">
-                <input type="text" placeholder="Search.." name="search" class="search" onfocus="this.value=''">
-                <button class="search-button"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-        <div class="col-11">
-            <button id="myBtn" class="add">Add</button>
-            <div id="myModal" class="modal">
+            <div class="row">
+                <div class="col-4">
+                    <button class="sort">Sort Countries (A-Z)</button>
+                </div>
+                <div class="col-4">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search.." name="search" class="search" onfocus="this.value=''" onkeyup="this.value=this.value.charAt(0).toUpperCase() + this.value.slice(1)">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button id="myBtn" class="add">Add a New Country</button>
+                    <div id="myModal" class="modal">
 
 
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Please enter the country details below : </p>
-                    <div class="messages"> </div>
-                    <div class="row-name">Country Name : <input type="text" name="addCountryName" class="insertNewCountryName" onfocus="this.value=''"></div>
-                    <div class="row-flag">Country Flag : <input type="text" src="" alt="" class="insertNewFlag" onfocus="this.value=''"></div>
-                    <button class="adding">Submit</button>
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Please enter the country details below : </p>
+                            <div class="messages"> </div>
+                            <div class="row-name">Country Name : <input type="text" name="addCountryName" placeholder="click to enter a country.." class="insertNewCountryName" onfocus="this.value=''"></div>
+                            <div class="row-flag">Country Flag : <input type="text" src="" alt="" placeholder="click to enter a flag.." class="insertNewFlag" onfocus="this.value=''"></div>
+                            <div class="addingBtn"><button class="adding">Submit</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
        
         <div class="row">
             <div class="col-12">
                 <h1>Country Flags</h1>
+                <header>Please click this flag to get your flag emoji's : <a href="https://emojipedia.org/flags/" target="_blank" rel="noopener noreferrer">🏴</a></header>
             </div>
         </div>
-        <!-- <div class="results">
-
-        </div> -->
         <div class="row">
-            <div class="col-4">
-                <h4>Country Name & flag</h4>
-                    <!-- <div>Rainbow</div> -->
+            <div class="col-12">
+                <h4>Country Name & Flag</h4>
                 <div class="nameInput"> </div>
-            </div>
-            <!-- <div class="col-3">
-                <h4>Country Flag</h4>
-                    
-                <div class="flagInput"> </div>
-            </div> -->
-            <div class="col-4">
-                <h4>Alphabetical Order</h4>
-                <div class="order"></div>
-            </div>
-            <div class="col-4">
-                <h4>Search Results</h4>
-                <div class="search-results"> </div>
             </div>
         </div>
 
     </div>
+
 
     <script src="index.js"></script>
 
