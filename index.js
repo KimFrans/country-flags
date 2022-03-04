@@ -12,8 +12,11 @@ const gettingNewCountryName = document.querySelector(".insertNewCountryName")
 const gettingNewFlag = document.querySelector(".insertNewFlag")
 const addingNewCountryNameToArray = document.querySelector(".adding")
 const errorMessage = document.querySelector(".messages")
+const messageSuccess = document.querySelector(".successMessages")
 const sortDisplay = document.querySelector(".order")
 const searchDispay = document.querySelector(".search-results")
+const errorMessage2 = document.querySelector(".error")
+const successful = document.querySelector(".success")
 
 if (localStorage['countryData']) {
   countryData = JSON.parse(localStorage.getItem('countryData'))
@@ -68,30 +71,40 @@ function addingNewCountry() {
       if (newCountry.match("^[a-zA-Z]*$")) {
         if (newFlag.match(flagRegex)) {
           countryData.push({ country: newCountryNameUpper, flag: newFlag })
+          successful.innerHTML = "The country and flag entered has been entered successfully"
+          messageSuccess.innerHTML = "The country and flag entered has been entered successfully"
           localStorage.setItem('countryData', JSON.stringify(countryData))
 
         }
         else {
           errorMessage.innerHTML = "Please enter a valid flag"
+          errorMessage2.innerHTML = "Please enter a valid flag"
         }
       }
       else {
         errorMessage.innerHTML = "Please enter a valid country name"
+        errorMessage2.innerHTML = "Please enter a valid country name"
       }
     }
     else if (countryExists(newCountryNameUpper) == true || flagExists(newFlag) == true) {
       errorMessage.innerHTML = "This country or flag already exists"
+      errorMessage2.innerHTML = "The country or flag entered already exists"
     }
   }
   else if (newCountryNameUpper == "") {
     errorMessage.innerHTML = "Please enter a country name"
+    errorMessage2.innerHTML = "Please enter a country name"
   }
   else if (newFlag == "") {
     errorMessage.innerHTML = "Please insert a country flag"
+    errorMessage2.innerHTML = "Please insert a country flag"
   }
 
   setTimeout(function () {
     errorMessage.innerHTML = "";
+    errorMessage2.innerHTML = "";
+    successful.innerHTML = "";
+    messageSuccess.innerHTML = "";
   }, 3000);
 
   display()
@@ -103,6 +116,9 @@ function addingNewCountry() {
 
 }
 addingNewCountryNameToArray.addEventListener('click', addingNewCountry)
+addingNewCountryNameToArray.onclick = function () {
+  modal.style.display = "none";
+}
 
 function searchCountry() {
   let searchInput = searchValue.value
