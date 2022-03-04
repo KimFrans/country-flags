@@ -1,4 +1,4 @@
-const countryData = [{ country: "Argentina", flag: "🇦🇷" },
+let countryData = [{ country: "Argentina", flag: "🇦🇷" },
 { country: "Brazil", flag: "🇧🇷" }, { country: "Chile", flag: "🇨🇱" }, { country: "Zambia", flag: "🇿🇲" },
 { country: "Uganda", flag: "🇺🇬" }, { country: "Malawi", flag: "🇲🇼" }, { country: "Rwanda", flag: "🇷🇼" },
 { country: "Ireland", flag: "🇮🇪" }, { country: "Switzerland", flag: "🇨🇭" }];
@@ -15,16 +15,15 @@ const errorMessage = document.querySelector(".messages")
 const sortDisplay = document.querySelector(".order")
 const searchDispay = document.querySelector(".search-results")
 
-// localStorage.setItem(countryData , JSON.stringify(countryData))
-// localStorage.getItem(countryData, JSON.parse(countryData))
+if (localStorage['countryData']) {
+  countryData = JSON.parse(localStorage.getItem('countryData'))
+}
 
 // get a reference to the template script tag
 var templateSource = document.querySelector(".templateName").innerHTML;
-
 // compile the template
 var userTemplate = Handlebars.compile(templateSource);
 
-// const stringData = JSON.stringify(countryData)
 
 function display() {
   let filter = countryData.map(function (element) {
@@ -69,8 +68,7 @@ function addingNewCountry() {
       if (newCountry.match("^[a-zA-Z]*$")) {
         if (newFlag.match(flagRegex)) {
           countryData.push({ country: newCountryNameUpper, flag: newFlag })
-          // localStorage.setItem(countryData , JSON.stringify(countryData))
-          // console.log(countryData);
+          localStorage.setItem('countryData', JSON.stringify(countryData))
 
         }
         else {
@@ -84,7 +82,7 @@ function addingNewCountry() {
     else if (countryExists(newCountryNameUpper) == true || flagExists(newFlag) == true) {
       errorMessage.innerHTML = "This country or flag already exists"
     }
-  } 
+  }
   else if (newCountryNameUpper == "") {
     errorMessage.innerHTML = "Please enter a country name"
   }
@@ -92,8 +90,11 @@ function addingNewCountry() {
     errorMessage.innerHTML = "Please insert a country flag"
   }
 
+  setTimeout(function () {
+    errorMessage.innerHTML = "";
+  }, 3000);
+
   display()
-  // localStorage.setItem(countryData , JSON.stringify(countryData))
 
   return {
     countryExists,
@@ -109,7 +110,6 @@ function searchCountry() {
   const searchFilter = countryData.filter(function (country) {
     return country.country.includes(searchInput)
   })
-  // console.log(searchFilter);
   countryName.innerHTML = userTemplate({ countries: searchFilter })
 
 }
