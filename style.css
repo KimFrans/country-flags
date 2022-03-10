@@ -183,21 +183,13 @@ li{
     color: white;
 }
 
-.messages{
-    color: red;
-}
-
 .error{
-    color: red;
+    /* color: red; */
+    color: rgb(255, 0, 128);
+    font-weight: bolder;
+    font-size: 1.3rem;
 }
 
-.success{
-    color: green;
-}
-
-.successMessages{
-    color: green;
-}
 
 .col-12{
     text-align: center;
